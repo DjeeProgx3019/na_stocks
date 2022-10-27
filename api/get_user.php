@@ -16,6 +16,7 @@ switch ($method) {
         $result = $stmt->get_result();
 
         if (mysqli_num_rows($result) != 0) {
+           
             while ($user = mysqli_fetch_assoc($result)) {
                 if (password_verify($password, $user['password'])) {
                     if ($user['usertype'] === '0') {

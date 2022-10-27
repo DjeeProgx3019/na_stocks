@@ -5,7 +5,8 @@ $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case 'GET':
-        $stmt=$con->prepare("SELECT DISTINCT dept_name from department;");
+    
+        $stmt=$con->prepare("SELECT * FROM departments;");
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

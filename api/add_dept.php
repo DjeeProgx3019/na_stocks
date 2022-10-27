@@ -9,7 +9,7 @@ switch($method){
      
         $deptname=$na_stocks->department;
 
-        $stmt=$con->prepare("INSERT INTO department(dept_name) VALUES (?)");
+        $stmt=$con->prepare("INSERT INTO department(department) VALUES (?)");
         $stmt->bind_param("s",$deptname);
 
   

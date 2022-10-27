@@ -5,7 +5,7 @@ $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case 'GET':
-        $stmt=$con->prepare("SELECT DISTINCT section FROM stocks;");
+        $stmt=$con->prepare("SELECT COUNT(PK_userID) AS declined FROM user_info WHERE status=2;");
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

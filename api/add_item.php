@@ -10,12 +10,12 @@ switch($method){
         $na_stocks = json_decode(file_get_contents("php://input"));
         
         // inserts data to db
-        $stmt=$con->prepare("INSERT INTO stocks(section, name1, date1, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssisis", $section, $name1, $date1, $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus );
+        $stmt=$con->prepare("INSERT INTO stocks(department, name1, date1, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus) VALUES (?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssisis", $department, $name1, $date1, $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus );
         // isssss data type per entity
 
         // $PK_transID = (rand(1,100000));
-        $section = $na_stocks->section;
+        $department = $na_stocks->department;
         $name1 = $na_stocks->name1;
         $date1 = $na_stocks->date1;
         $refnum = $na_stocks->refnum;

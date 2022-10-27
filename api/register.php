@@ -7,37 +7,41 @@ switch($method){
     case 'POST': 
         
         // decodes input from front-end
-        $info = json_decode(file_get_contents("php://input"));
-         
+        $user = json_decode(file_get_contents("php://input"));
+        $id = $user->params->id;
+        $stmt = $con->prepare("SELECT FROM register WHERE PK_regID=?"); 
+        
+        if (mysqli_num_rows($stmt) < 1) {
+        $Pk_accID=(rand(1,100000));
          $username = $user->username;
-         $type = $user->usertype;
-         $password = $user->password;
+         $type = $user->type;
+         $password = password_hash($user->password, PASSWORD_DEFAULT);
 
+        $Pk_userID=(rand(1,100000));
         $firstname = $user->firstName;
         $lastname = $user->lastName;
         $department = $user->department;
+        $role = $user->role;
 
-        $check = "SELECT * FROM account WHERE username = '$username'";
-        $checking  = mysqli_query($con, $check);
+        $stmt = "INSERT INTO account(PK_accID, username, `password`, usertype) VALUES ('$Pk_accID','$username','$password','$type')";
+         
+        $results = mysqli_query($con, $stmt);
 
-       
-        if (mysqli_num_rows($checking) < 1) {
-            $stmt = "INSERT INTO account(PK_accId, username, `password`, `usertype`) VALUES ('$Pk_acc','$username','$password','$type');";
-            $results = mysqli_query($con, $stmt);
+        $info = "INSERT INTO user_info(PK_userID, PK_accID, last_name, first_name, department,`role`) VALUES ('$Pk_userID','$Pk_accID','$lastname' ,'$firstname','$department', '$role')";
+      
+        $results = mysqli_query($con, $info);
 
-            $info = "INSERT INTO user_info(PK_userId, FK_accountId, first_name, last_name, department,`role`) VALUES ('$Pk_userId','$Pk_accId','$firstname','$lastname','$department' '$role')";
-            $results = mysqli_query($con, $info);
-
-            $data = ['status' => 1, 'message' => "Account Added Successfully!"];
-        } else {
+        }
+        else {
             $data = ['status' => 2, 'message' => "Failed to create record."];
         }
-
-
         
-        
-        echo json_encode($result);
+        echo json_encode($data);
         break;
     }
 
 ?> 
+
+
+
+    
