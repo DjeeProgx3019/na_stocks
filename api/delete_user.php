@@ -11,17 +11,15 @@ switch($method){
         //  echo $user->params->id;
        
         $id = $user->params->id;
-        $stmt = $con->prepare("DELETE FROM `user_info` WHERE PK_userID=?"); 
-        $stmt->bind_param("i", $id);
-          
-       
-    
-        // if(mysqli_query($con, $stmt)){
-        //     $data = ['status' => 0, 'message' => "Account Deleted Successfully!"];
-        // }   
-        // echo json_encode($data);
+        $stmt = $con->prepare("DELETE FROM `user_info` WHERE PK_accID=?");
+        $stmt->bind_param("i", $id);  
+        
+     
+     
         break;
         mysqli_close($con);
+     
+      
     }
 
 ?> 
