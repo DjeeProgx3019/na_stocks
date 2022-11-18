@@ -33,10 +33,10 @@ switch($method){
         $checking = mysqli_query($con, $check);
   
         if (mysqli_num_rows($checking) < 1) {
-            $stmt = "INSERT INTO account(PK_accID, username, `password`, usertype) VALUES ('$Pk_accID','$username','$password1','$type')";
+            $stmt = "INSERT INTO account( username, `password`, usertype) VALUES ('$Pk_accID','$username','$password1','$type')";
             $results = mysqli_query($con, $stmt);
              
-            $info = "INSERT INTO user_info(PK_userID, PK_accID, PK_deptID, last_name, first_name, `role`, `status`) VALUES ('$Pk_userID', '$Pk_accID', '$department', '$lastName',' $firstName','$role','$status1')";
+            $info = "INSERT INTO user_info( PK_accID, PK_deptID, last_name, first_name, `role`, `status`) VALUES ('$Pk_userID', '$Pk_accID', '$department', '$lastName',' $firstName','$role','$status1')";
             $results = mysqli_query($con, $info); 
             
             $data = ['status' => 1, 'message' => "Account Added Successfully!"];    
