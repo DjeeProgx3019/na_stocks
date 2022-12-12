@@ -22,16 +22,25 @@ switch ($method) {
                     if ($user['usertype'] === '0') {
                         $role = 'admin';
                     }
-                    elseif($user['usertype'] !== '0'){
-                        $role = 'users';
+                    elseif($user['usertype'] === '2'){
+                        $role = 'head';
+                    }
+                    elseif($user['usertype'] === '3'){
+                        $role = 'users'; 
                     }
                     $data = ['status' => 1, 'message' => "Success", 'user' => $role];
-                } else {
+                    
+                    if($user['istatus'] === 0 && 'usertype' !=='admin'){
+                    $stats = 'pending';
+                    $data = ['status' => 2, 'message' => "Not Approved", 'status' => $stats];
+                }
+            }
+             
+               
+                else{
                     $data = ['status' => 0, 'message' => "Invalid password"];
                 }
             }
-        } else {
-            $data = ['status' => 0, 'message' => "No Username"];
         }
         echo json_encode($data);
         break;
