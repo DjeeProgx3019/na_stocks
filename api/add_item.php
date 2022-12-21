@@ -8,8 +8,8 @@ switch($method){
         
         // decodes input from front-end
         $na_stocks = json_decode(file_get_contents("php://input"));
-        $PK_transID = (rand(1,100000));
-        $PK_userID= $na_stocks->PK_userID;
+        // $PK_transID = (rand(1,100000));
+        $PK_userID1= $na_stocks->PK_userID1;
         $date1 = $na_stocks->date1;
         $refnum = $na_stocks->refnum;
         $ctrlnum = $na_stocks->ctrlnum;
@@ -20,15 +20,8 @@ switch($method){
         $istatus = $na_stocks->istatus;
         
         // inserts data to db
-        $stmt=$con->prepare("INSERT INTO stocks(PK_transID, FK_userID, date1, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssisis",$PK_transID, $PK_userID, $date1, $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus );
-        // isssss data type per entity
-
-       
-
-            // if($stmt->execute()){
-            //     $result = ['result'=> 1, 'message' =>"Data Successfully Added."];
-            // }
+        $stmt=$con->prepare("INSERT INTO stocks( FK_userID, date1, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("issssisis", $PK_userID1, $date1, $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus );
         if($stmt->execute()){
             $result = ['result'=> 1, 'message' => 'Data Success'];
         }
