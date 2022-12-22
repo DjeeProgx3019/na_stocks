@@ -20,8 +20,8 @@ switch($method){
         $istatus = $na_stocks->istatus;
         
         // inserts data to db
-        $stmt=$con->prepare("INSERT INTO stocks( FK_userID, date1, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus) VALUES (?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("issssisis", $PK_userID1, $date1, $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus );
+        $stmt=$con->prepare("INSERT INTO stocks( FK_userID, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus,date_added) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("issssisis", $PK_userID1,  $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus,$date1, );
         if($stmt->execute()){
             $result = ['result'=> 1, 'message' => 'Data Success'];
         }
