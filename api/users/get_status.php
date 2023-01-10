@@ -5,7 +5,9 @@ $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case 'GET':
-        $stmt=$con->prepare("SELECT DISTINCT refnum from stocks where istatus=0;");
+        $stmt=$con->prepare("SELECT DISTINCT istatus FROM stocks WHERE refnum =?;");
+        // $stmt=$con->prepare("SELECT itemdesc,qty,uom,unitprice,istatus FROM stocks where refnum =?;");
+        $stmt->bind_param('s', $_GET['istatus']);
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
