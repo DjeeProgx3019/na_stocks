@@ -1,11 +1,12 @@
 <?php
-include '../config/config.php';
+include '../../config/config.php';
 
 $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case 'GET':
-        $stmt=$con->prepare("SELECT COUNT(PK_userID) AS approved FROM user_info WHERE status=1;");
+        $stmt=$con->prepare("SELECT COUNT(PK_accID) AS pending FROM account WHERE istatus=0;");
+        // $stmt->bind_param('i', $_GET['pending']);
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

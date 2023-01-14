@@ -1,5 +1,5 @@
 <?php
-include '../config/config.php';
+include '../../config/config.php';
 $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
