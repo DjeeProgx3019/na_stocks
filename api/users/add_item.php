@@ -17,11 +17,11 @@ switch($method){
         $qty = $na_stocks->qty;
         $uom = $na_stocks->uom;
         $unitprice = $na_stocks->unitprice;
-        $istatus = $na_stocks->istatus;
+        $status = $na_stocks->status;
         
         // inserts data to db
-        $stmt=$con->prepare("INSERT INTO stocks( FK_userID, refnum,ctrlnum,itemdesc,qty,uom,unitprice,istatus,date_added) VALUES (?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("issssisis", $PK_userID1,  $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $istatus,$date1, );
+        $stmt=$con->prepare("INSERT INTO stocks( FK_userID, refnum,ctrlnum,itemdesc,qty,uom,unitprice,`status`,date_added) VALUES (?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("issssisis", $PK_userID1,  $refnum, $ctrlnum, $itemdesc, $qty, $uom, $unitprice, $status,$date1, );
         if($stmt->execute()){
             $result = ['result'=> 1, 'message' => 'Data Success'];
         }
