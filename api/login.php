@@ -9,7 +9,7 @@ switch ($method) {
 
         $username = $user->username;
         $password = $user->password;
-        $PK_accID = $user->PK_accID;
+      
 
         $stmt = $con->prepare("SELECT * FROM account WHERE username= ?;");
         $stmt->bind_param("s", $username);

@@ -11,11 +11,9 @@ switch($method){
         $FK_accID=$na_stocks->FK_accID;
         $PK_userID=$na_stocks->PK_userID;
         
-
         $stmt=("DELETE FROM user_info WHERE PK_userID='$PK_userID'");
         if(mysqli_query($con,$stmt)){
             $info=("DELETE FROM account WHERE PK_accID='$FK_accID'");
-          
         }
            if(mysqli_query($con,$info)){
             $result = ['result'=> 1, 'message' => 'Data Success'];
