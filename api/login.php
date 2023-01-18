@@ -20,13 +20,16 @@ switch ($method) {
            
             while ($user = mysqli_fetch_assoc($result)) {
                 if (password_verify($password, $user['password'])) {
-                    if ($user['usertype'] === '0') {
+                    if ($user['usertype'] === 0) {
                         $role = 'admin';
                     }
-                    elseif($user['usertype'] === '2'){
+                    elseif($user['usertype'] === 1){
+                        $role = 'approval';
+                    }
+                    elseif($user['usertype'] === 2){
                         $role = 'head';
                     }
-                    elseif($user['usertype'] === '3'){
+                    elseif($user['usertype'] === 3){
                         $role = 'users'; 
                     }
                     $data = ['status' => 1, 'message' => "Success", 'user' => $role];
