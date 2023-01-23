@@ -5,7 +5,7 @@ $method=$_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case 'GET':
-        $stmt=$con->prepare("SELECT COUNT(DISTINCT refnum) AS active FROM stocks WHERE status=1;");
+        $stmt=$con->prepare("SELECT COUNT(DISTINCT refnum) AS active FROM stocks WHERE status=2;");
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

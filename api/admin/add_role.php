@@ -7,10 +7,10 @@ switch($method){
     case 'POST':
         $na_stocks = json_decode(file_get_contents("php://input"));
      
-        $department=$na_stocks->department;
+        $role=$na_stocks->role;
 
-        $stmt=$con->prepare("INSERT INTO departments(department) VALUES (?)");
-        $stmt->bind_param("s",$department);
+        $stmt=$con->prepare("INSERT INTO roles(`role`) VALUES (?)");
+        $stmt->bind_param("s",$role);
 
 
         if($stmt->execute()){

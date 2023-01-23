@@ -6,7 +6,7 @@ $method=$_SERVER['REQUEST_METHOD'];
 switch($method){
     case 'GET':
     
-        $stmt=$con->prepare("SELECT * FROM roles;");
+        $stmt=$con->prepare("SELECT * FROM roles WHERE `role` != 'Head' AND `role` != 'OIC';");
         $stmt->execute();
         $assigned = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

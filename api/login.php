@@ -20,6 +20,11 @@ switch ($method) {
            
             while ($user = mysqli_fetch_assoc($result)) {
                 if (password_verify($password, $user['password'])) {
+                    if (!isset($_SESSION)) {
+                        session_set_cookie_params(2000, '/', 'localhost');
+                        $sessId = session_start();
+                        $_SESSION['loggedin'] = TRUE;
+                    }
                     if ($user['usertype'] === 0) {
                         $role = 'admin';
                     }
@@ -34,12 +39,11 @@ switch ($method) {
                     }
                     $data = ['status' => 1, 'message' => "Success", 'user' => $role];
                     
-                    if($user['istatus'] === 0 && 'usertype' !=='admin'){
+                    if($user['istatus'] === 0 && 'usertype' !=='admin' && 'usertype' !=='head'){
                     $stats = 'pending';
                     $data = ['status' => 2, 'message' => "Not Approved", 'status' => $stats];
                 }
             }
-             
                
                 else{
                     $data = ['status' => 0, 'message' => "Invalid password"];
