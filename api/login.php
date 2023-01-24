@@ -39,12 +39,11 @@ switch ($method) {
                     }
                     $data = ['status' => 1, 'message' => "Success", 'user' => $role];
                     
-                    if($user['istatus'] === 0 && 'usertype' !=='admin' && 'usertype' !=='head'){
+                    if($user['istatus'] === 0 && 'usertype' !=='admin'){
                     $stats = 'pending';
                     $data = ['status' => 2, 'message' => "Not Approved", 'status' => $stats];
                 }
             }
-               
                 else{
                     $data = ['status' => 0, 'message' => "Invalid password"];
                 }

@@ -7,7 +7,7 @@ switch($method){
         $na_stocks = json_decode(file_get_contents("php://input"));
         $refnum = $na_stocks->refnum;
         
-        $stmt=$con->prepare("UPDATE stocks SET `status` =1 WHERE refnum='$refnum';");
+        $stmt=$con->prepare("UPDATE stocks SET `status` =2 WHERE refnum='$refnum';");
         // $stmt->bind_param('s');
         if($stmt->execute()){
             $result = ['result'=> 1, 'message' => 'Data Success'];
