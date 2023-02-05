@@ -8,7 +8,7 @@ switch($method){
         
         // decodes input from front-end
         $na_stocks = json_decode(file_get_contents("php://input"));
-        // $PK_transID = (rand(1,100000));
+        $PK_transID = (rand(1,100000));
         $PK_userID1= $na_stocks->PK_userID1;
         $date1 = $na_stocks->date1;
         $refnum = $na_stocks->refnum;

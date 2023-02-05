@@ -8,7 +8,7 @@ switch($method){
         $na_stocks = json_decode(file_get_contents("php://input"));
        $PK_deptID = (rand(1,100000));
         $department=$na_stocks->department;
-
+       
         $stmt=$con->prepare("INSERT INTO departments(PK_deptID, department) VALUES (?,?)");
         $stmt->bind_param("is",$PK_deptID,$department);
 
